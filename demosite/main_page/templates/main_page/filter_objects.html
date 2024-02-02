@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сворачиваемые блоки</title>
+  <style>
+    /* Стилизация блоков */
+    .collapsible {
+      background-color: #f1f1f1;
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      width: 200px;
+    }
+
+    .content {
+      display: none;
+      padding: 10px;
+      width: 200px;
+
+    }
+  </style>
+</head>
+<body>
+
+<!-- Пример сворачиваемого блока -->
+<div class="collapsible" onclick="toggleContent('ChromosomalMutations')">Хромосомные мутации</div>
+<div id="screenSize" class="content">
+  <!-- Содержимое блока -->
+  <label for="screenWidth">Тип мутации:</label>
+  <input type="text" id="mutation_chromosome">
+
+  <label for="screenHeight">Номер хромосомы:</label>
+  <input type="text" id="number_chromosome">
+</div>
+
+<!-- Пример второго сворачиваемого блока -->
+<div class="collapsible" onclick="toggleContent('IndividDetails')">Детали индивида</div>
+<div id="ram" class="content">
+  <!-- Содержимое блока -->
+  <label for="ramSize">Возраст:</label>
+  <input type="text" id="individ_age">
+  
+  <label for="ramSize">ФИО:</label>
+  <input type="text" id="FullName">
+</div>
+
+<script>
+  function toggleContent(id) {
+    var content = document.getElementById(id);
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  }
+</script>
+
+</body>
+</html>

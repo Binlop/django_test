@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сворачиваемые блоки</title>
+  <style>
+    .collapsible {
+      background-color: #f1f1f1;
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      width: 200px;
+
+    }
+
+    .content {
+      display: none;
+      padding: 10px;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+    <div class="features">
+        <table>
+            <thead>
+                <tr>
+                    <td class="property-cell">ФИО</td>
+                    <td class="property-cell">Возраст</td>
+                    <td class="property-cell">Школа</td>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>Пупкин Василий</td>
+                        <td>17</td>
+                        <td>Номер 4</td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+<form method="GET" action="{% url 'filter_students' %}">
+<div class="collapsible" onclick="toggleContent('ChromosomalMutations')">Хромосомные мутации</div>
+    <div id="ChromosomalMutations" class="content">
+    <!-- Содержимое блока -->
+    <label for="mutation_chromosome">Тип мутации:</label>
+    <input type="text" name="mutation_chromosome" id="mutation_chromosome">
+
+    <label for="number_chromosome">Номер хромосомы:</label>
+    <input type="text" name="number_chromosome" id="number_chromosome">
+    </div>
+</div>
+
+<!-- Пример второго сворачиваемого блока -->
+<div class="collapsible" onclick="toggleContent('IndividDetails')">Детали индивида</div>
+    <div id="IndividDetails" class="content">
+    <!-- Содержимое блока -->
+    <label for="individ_age">Возраст:</label>
+    <input type="text" name="individ_age" id="individ_age">
+    
+    <label for="full_name">ФИО:</label>
+    <input type="text" name="full_name" id="full_name">
+    </div>
+</div>
+
+<div class="collapsible" onclick="toggleContent('SampletypeDetails')">Тип образца</div>
+    <div id="SampletypeDetails" class="content">
+    <!-- Содержимое блока -->
+    <label for="count_chorion">Хорион</label>
+    <input type="checkbox" name="count_chorion" id="count_chorion"{% if 'chorion' in initial_sampletypes %}checked{% endif %}>
+    
+    <label for="count_dna">ДНК</label>
+    <input type="checkbox" name="count_dna" id="count_dna"{% if 'dna' in initial_sampletypes %}checked{% endif %}>
+    </div>
+</div>
+<div class="collapsible" onclick="toggleContent('FamilyDetails')">Семья</div>
+    <div id="FamilyDetails" class="content">
+    <!-- Содержимое блока -->
+    <label for="student">Выберите студента из списка:</label>
+    <select id="student" name="student">
+      <option value="">--------------</option>
+        {% for student in  students %}
+            <option value="{{ student.id }}">{{ student.name }}</option>
+        {% endfor %}
+    </select>
+    
+    <label for="teacher">Выберите учителя из списка:</label>
+    <select id="teacher" name="teacher">
+      <option value="">--------------</option>
+        {% for teacher in  teachers %}
+            <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+        {% endfor %}
+    </select>
+    </div>
+    <button type="submit" class="btn btn-success">Поиск</button>
+</div>
+</form>
+<script>
+        
+  function toggleContent(id) {
+    var content = document.getElementById(id);
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заголовок страницы</title>
+    <link rel="stylesheet" href="./styles/style.css">
+  </head>
+  <body>
+    <div class="features">
+        <h1>Создать</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %} {#Токен необходим для доставки формы до базы данных#}
+            <!--Создаем разделы формы на сайте, подключаем разделы из словаря в forms.py-->
+            {{ form.as_p }}
+            <!--Отдельное место на странице для вывода ошибки создания формы-->
+            <span>{{ error }}</span>
+
+            <!--Создание кнопки для подтверждения действия сохранить, обязателен тип submit-->
+            <button class="btn btn-success" type="submit">Создать</button>
+        </form>
+    </div>
+</body>
+</html>
